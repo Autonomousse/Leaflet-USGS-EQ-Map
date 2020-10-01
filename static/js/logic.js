@@ -63,7 +63,8 @@ function featureIterate(data) {
   for (var x = 0; x < data.length; x++) {
     eq_locations.push(
       L.circle(data[x].geometry.coordinates.slice(0, 2).reverse(), {
-        stroke: false,
+        stroke: true,
+        weight: 0.5,
         fillOpacity: 0.75,
         fillColor: circleColor(data[x].geometry.coordinates.slice(2, 3)),
         color: "black",
@@ -147,7 +148,3 @@ function dateConversion(unix) {
   var converted = dateObject.toLocaleString();
   return converted;
 }
-
-// }).catch(function (error) {
-//   console.log(error);
-// });
