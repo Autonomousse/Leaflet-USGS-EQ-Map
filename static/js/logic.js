@@ -55,10 +55,6 @@ d3.json(geoJSON).then(function (geoData) {
 // Create arrays to hold the circle markers
 var eq_locations = [];
 
-// Create arrays with color values and depths
-var colorCodes = ["#e55343", "#e27243", "#df9144", "#ddae44", "#daca45", "#cad745", "#abd545", "#8ed246", "#72cf46", "#56cd46"]
-var depths = [90, 80, 70, 60, 50, 40, 30, 20, 10]
-
 function featureIterate(data) {
 
   // Create a function that will iterate through the data and create circles based on the magnitude
@@ -79,7 +75,7 @@ function featureIterate(data) {
 
   // Create two separate layer groups: one for earthquakes and one for tectonic plates
   var eq = L.layerGroup(eq_locations);
-  var tectonic = L.layerGroup();
+  // var tectonic = L.layerGroup();
 
   // Create the map with layers, at the mapid ID in the HTML file
   var map = L.map("mapid", {
@@ -110,24 +106,26 @@ function featureIterate(data) {
     position: "bottomright"
   });
 
-  legend.onAdd = function() {
+  legend.onAdd = function () {
 
-    var div = L.DomUtil.create("div", "legend");
+    var div = L.DomUtil.create("div", "info legend");
+    var colors = ["#56cd46", "#72cf46", "#8ed246", "#abd545", "#cad745", "#daca45", "#ddae44", "#df9144", "#e27243", "#e55343"];
+    var grades = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
+
+    var legendInfo = "<h3>Earthquake Depth (km)</h3>"
+
+    div.innerHTML = legendInfo;
+
+    for (var i = 0; i < grades.length; i++) {
+      div.innerHTML +=
+        '<i style="background:' + circleColor(grades[i]) + '"></i> ' +
+        grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+    }
+
     return div;
   };
-
-  var legendInfo = "<h3>Earthquake Depth (km)</h3>"
-
-  div.innerHTML = legendInfo;
-
-  labels = [];
-  colorCodes.forEach(function(value) {
-    labels.push("<li style=\"background-color" + value + "\></li>");
-  });
-
   legend.addTo(map);
-
-}
+};
 
 // Function that returns the color value for different depths
 function circleColor(depth) {
@@ -135,34 +133,34 @@ function circleColor(depth) {
   var color = "";
 
   if (depth > 90) {
-    color = colorCodes[0];
+    color = "#e55343";
   }
   else if (depth > 80) {
-    color = colorCodes[1];
+    color = "#e27243";
   }
   else if (depth > 70) {
-    color = colorCodes[2];
+    color = "#df9144";
   }
   else if (depth > 60) {
-    color = colorCodes[3];
+    color = "#ddae44";
   }
   else if (depth > 50) {
-    color = colorCodes[4];
+    color = "#daca45";
   }
   else if (depth > 40) {
-    color = colorCodes[5];
+    color = "#cad745";
   }
   else if (depth > 30) {
-    color = colorCodes[6];
+    color = "#abd545";
   }
   else if (depth > 20) {
-    color = colorCodes[7];
+    color = "#8ed246";
   }
   else if (depth > 10) {
-    color = colorCodes[8];
+    color = "#72cf46";
   }
   else {
-    color = colorCodes[9];
+    color = "#56cd46";
   }
 
   return color;
@@ -173,4 +171,4 @@ function dateConversion(unix) {
   var dateObject = new Date(unix)
   var converted = dateObject.toLocaleString();
   return converted;
-}
+};
