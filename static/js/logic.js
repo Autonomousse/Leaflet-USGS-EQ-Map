@@ -55,6 +55,10 @@ d3.json(geoJSON).then(function (geoData) {
 // Create arrays to hold the circle markers
 var eq_locations = [];
 
+// Create arrays with color values and depths
+var colorCodes = ["#e55343", "#e27243", "#df9144", "#ddae44", "#daca45", "#cad745", "#abd545", "#8ed246", "#72cf46", "#56cd46"]
+var depths = [90, 80, 70, 60, 50, 40, 30, 20, 10]
+
 function featureIterate(data) {
 
   // Create a function that will iterate through the data and create circles based on the magnitude
@@ -101,6 +105,28 @@ function featureIterate(data) {
 
   // Create a control for the layers and add the layers to it
   L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+  var legend = L.control({
+    position: "bottomright"
+  });
+
+  legend.onAdd = function() {
+
+    var div = L.DomUtil.create("div", "legend");
+    return div;
+  };
+
+  var legendInfo = "<h3>Earthquake Depth (km)</h3>"
+
+  div.innerHTML = legendInfo;
+
+  labels = [];
+  colorCodes.forEach(function(value) {
+    labels.push("<li style=\"background-color" + value + "\></li>");
+  });
+
+  legend.addTo(map);
+
 }
 
 // Function that returns the color value for different depths
@@ -109,34 +135,34 @@ function circleColor(depth) {
   var color = "";
 
   if (depth > 90) {
-    color = "#e55343";
+    color = colorCodes[0];
   }
   else if (depth > 80) {
-    color = "#e27243";
+    color = colorCodes[1];
   }
   else if (depth > 70) {
-    color = "#df9144";
+    color = colorCodes[2];
   }
   else if (depth > 60) {
-    color = "#ddae44";
+    color = colorCodes[3];
   }
   else if (depth > 50) {
-    color = "#daca45";
+    color = colorCodes[4];
   }
   else if (depth > 40) {
-    color = "#cad745";
+    color = colorCodes[5];
   }
   else if (depth > 30) {
-    color = "#abd545";
+    color = colorCodes[6];
   }
   else if (depth > 20) {
-    color = "#8ed246";
+    color = colorCodes[7];
   }
   else if (depth > 10) {
-    color = "#72cf46";
+    color = colorCodes[8];
   }
   else {
-    color = "#56cd46";
+    color = colorCodes[9];
   }
 
   return color;
