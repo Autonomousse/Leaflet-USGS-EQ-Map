@@ -102,23 +102,32 @@ function featureIterate(data) {
   // Create a control for the layers and add the layers to it
   L.control.layers(baseMaps, overlayMaps).addTo(map);
 
+  // Add the legend to the map on the bottom right corner
   var legend = L.control({
     position: "bottomright"
   });
 
+  // When the legend is added to the map
   legend.onAdd = function () {
 
+    // Create a div with class "info legend"
+    // We will use CSS to create the colored backgrounds based on this class and make any adjustments
     var div = L.DomUtil.create("div", "info legend");
 
+    // An array that holds the ranges for the legend
     var grades = [10, 30, 50, 70, 90];
 
+    // A title for the legend
     var legendInfo = "<h4>Earthquake Depth (km)</h4>"
 
+    // Add the title to the legend
     div.innerHTML = legendInfo;
 
+    // Add the "< 10" range to the legend, pass 9 or less to circleColor for the correct background color
     div.innerHTML += '<i style="background:' + circleColor(grades[0]-1) + '"></i> < ' + 
     grades[0] + '<br>';
 
+    // Repeat the same process to add the remaining ranges, on the last index add a "+" after it
     for (var i = 0; i < grades.length; i++) {
       div.innerHTML +=
         '<i style="background:' + circleColor(grades[i]) + '"></i> ' + 
@@ -127,6 +136,8 @@ function featureIterate(data) {
 
     return div;
   };
+
+  // Add the legend to the map
   legend.addTo(map);
 };
 
