@@ -59,7 +59,7 @@ function featureIterate(data) {
   var eq_locations = [];
 
   // Create a function that will iterate through the data and create circles based on the magnitude
-  // The color of the circle will be retrieved from the circleColor function
+  // The color of the circle will be retrieved from the circleColor function and be based on the depth
   // Bind some popups giving information about the earthquake
   for (var x = 0; x < data.length; x++) {
     eq_locations.push(
@@ -91,8 +91,10 @@ function featureIterate(data) {
   // It also creates the the map overlays and basemap layers and adds everything to the map
   function featureTectonic(data) {
 
-    // Create an array
+    // Create an empty array to hold the plate tectonic data
     var latlngs = [];
+
+    // Use L.geoJSON to retreive the data since it's already in that specific format
     latlngs.push(L.geoJSON(data, {
       color: "#117792"
     })
@@ -101,7 +103,6 @@ function featureIterate(data) {
     // Create two separate layer groups: one for earthquakes and one for tectonic plates
     var eq = L.layerGroup(eq_locations);
     var tectonic = L.layerGroup(latlngs);
-
 
     // Create the map with layers, at the mapid ID in the HTML file
     var map = L.map("mapid", {
@@ -202,37 +203,3 @@ function dateConversion(unix) {
   var converted = dateObject.toLocaleString();
   return converted;
 };
-
-// // The link to grab the tectonic plates data from github
-// var tectonicPlates = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json";
-
-// // Create a promise and perform an API call for the tectonic plate data
-// d3.json(tectonicPlates).then(function (geoData) {
-
-//   // Once the data loads, send the features object to the featureTectonic function
-//   featureTectonic(geoData.features);
-
-// }).catch(function (error) {
-//   console.log(error);
-// });
-
-// function featureTectonic(data) {
-
-//   // Create an empty array to store the latitude and longitude locations for the polygon
-//   var latlngs = [];
-
-//   for (var x = 0; x < data.length; x++) {
-
-//     latlngs.push([data[x].geometry.coordinates]);
-//   }
-
-//   var polygon = L.polygon(latlngs, {
-//     color: "#e59743"
-//     // stroke: true,
-//     // weight: 1
-//   });
-
-//   var tectonic = L.layerGroup(polygon);
-
-
-// }
