@@ -64,12 +64,12 @@ function featureIterate(data) {
     eq_locations.push(
       L.circle(data[x].geometry.coordinates.slice(0, 2).reverse(), {
         stroke: true,
-        weight: 0.5,
+        weight: 0.25,
         fillOpacity: 0.75,
         fillColor: circleColor(data[x].geometry.coordinates.slice(2, 3)),
         color: "black",
         radius: data[x].properties.mag * 10000
-      }).bindPopup("<h3> Location: <em>" + data[x].properties.place + "</em> <hr> Magnitude: <em>" + data[x].properties.mag + "</em> <hr> Date: <em>" + dateConversion(data[x].properties.time) + "</em> </h3>")
+      }).bindPopup("<h3> Location: <em>" + data[x].properties.place + "</em> <hr> Magnitude: <em>" + data[x].properties.mag + "</em> <hr> Depth: <em>" + data[x].geometry.coordinates.slice(2,3) + "</em> <hr> Date: <em>" + dateConversion(data[x].properties.time) + "</em> </h3>")
     );
   }
 
@@ -109,17 +109,17 @@ function featureIterate(data) {
   legend.onAdd = function () {
 
     var div = L.DomUtil.create("div", "info legend");
-    var colors = ["#56cd46", "#72cf46", "#8ed246", "#abd545", "#cad745", "#daca45", "#ddae44", "#df9144", "#e27243", "#e55343"];
-    var grades = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
 
-    var legendInfo = "<h3>Earthquake Depth (km)</h3>"
+    var grades = [-10, 10, 30, 50, 70, 90];
+
+    var legendInfo = "<h4>Earthquake Depth (km)</h4>"
 
     div.innerHTML = legendInfo;
 
     for (var i = 0; i < grades.length; i++) {
       div.innerHTML +=
         '<i style="background:' + circleColor(grades[i]) + '"></i> ' +
-        grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+        grades[i] + (grades[i + 1] + 1 ? ' &ndash; ' + (grades[i + 1]) + '<br>' : '+');
     }
 
     return div;
@@ -132,32 +132,23 @@ function circleColor(depth) {
 
   var color = "";
 
-  if (depth > 90) {
+  if (depth >= 90) {
     color = "#e55343";
   }
-  else if (depth > 80) {
-    color = "#e27243";
-  }
-  else if (depth > 70) {
+  else if (depth >= 70) {
     color = "#df9144";
   }
-  else if (depth > 60) {
+  else if (depth >= 50) {
     color = "#ddae44";
   }
-  else if (depth > 50) {
+  else if (depth >= 30) {
     color = "#daca45";
   }
-  else if (depth > 40) {
-    color = "#cad745";
-  }
-  else if (depth > 30) {
+  else if (depth >= 10) {
     color = "#abd545";
   }
-  else if (depth > 20) {
+  else if (depth >= 0) {
     color = "#8ed246";
-  }
-  else if (depth > 10) {
-    color = "#72cf46";
   }
   else {
     color = "#56cd46";
