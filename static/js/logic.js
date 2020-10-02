@@ -110,15 +110,18 @@ function featureIterate(data) {
 
     var div = L.DomUtil.create("div", "info legend");
 
-    var grades = [-10, 10, 30, 50, 70, 90];
+    var grades = [10, 30, 50, 70, 90];
 
     var legendInfo = "<h4>Earthquake Depth (km)</h4>"
 
     div.innerHTML = legendInfo;
 
+    div.innerHTML += '<i style="background:' + circleColor(grades[0]-1) + '"></i> < ' + 
+    grades[0] + '<br>';
+
     for (var i = 0; i < grades.length; i++) {
       div.innerHTML +=
-        '<i style="background:' + circleColor(grades[i]) + '"></i> ' +
+        '<i style="background:' + circleColor(grades[i]) + '"></i> ' + 
         grades[i] + (grades[i + 1] + 1 ? ' &ndash; ' + (grades[i + 1]) + '<br>' : '+');
     }
 
@@ -147,10 +150,7 @@ function circleColor(depth) {
   else if (depth >= 10) {
     color = "#abd545";
   }
-  else if (depth >= 0) {
-    color = "#8ed246";
-  }
-  else {
+  else if (depth < 10) {
     color = "#56cd46";
   }
 
