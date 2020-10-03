@@ -67,6 +67,8 @@ If you wish to use the code already in this repository, you will need to complet
 
 ## Images of Final Product
 
+These images were created using the past 30 days of earthquake data for all earthquakes with magnitude 2.5 or greater.
+
 ![light map](images/light.png)
 
 ![dark map](images/dark.png)
