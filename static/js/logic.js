@@ -42,7 +42,7 @@ var satellite = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}
 // The link to grab the geoJSON data from USGS
 var geoJSON = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_month.geojson";
 
-// Create a promise and perform an API call for USGS past week M2.5+ earthquakes
+// Create a promise and perform an API call for USGS past month M1.0+ earthquakes
 d3.json(geoJSON).then(function (geoData) {
 
   // Once the data loads, send the features object to the featureIterate function
