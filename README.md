@@ -65,7 +65,7 @@ If you wish to use the code already in this repository, you will need to complet
 		  ```
 	* Replace `”YOUR ACCESS TOKEN”` with the token you created after signing up for Mapbox.
 
-## Images of final product
+## Images of Final Product
 
 ![light map](images/light.png)
 
