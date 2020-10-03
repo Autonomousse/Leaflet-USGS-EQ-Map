@@ -11,8 +11,6 @@ The USGS is interested in building a new set of tools that will allow them to vi
 
 ### Level 1: Basic Visualization
 
--INSERT IMAGE-
-
 Your first task is to visualize an earthquake data set.
 
 1. **Get your data set**
@@ -37,9 +35,9 @@ Your first task is to visualize an earthquake data set.
 
 ### Level 2: More Data (Optional)
 
--INSERT IMAGE-
-
 The USGS wants you to plot a second data set on your map to illustrate the relationship between tectonic plates and seismic activity. You will need to pull in a second data set and visualize it alongside your original set of data. Data on tectonic plates can be found at <https://github.com/fraxen/tectonicplates>.
+
+**HINT** this dataset is in a GeoJSON format that allows us to utilize a GeoJSON Layer type in [Leaflet](https://leafletjs.com/reference-1.7.1.html#geojson)
 
 In this step we are going to..
 
@@ -49,5 +47,31 @@ In this step we are going to..
 
 * Add layer controls to our map.
 
+## Additional
 
+If you wish to use the code already in this repository, you will need to complete the following steps:
+
+* Head to [Mapbox](https://www.mapbox.com/) and create an account. Follow the steps to create a new access token or use the default public token they provide.
+
+* Create a file called `config.js` at the following location:
+
+	* `/static/js/config.js`
+
+	* Inside this file, write the following script:
+
+		* ```javascript
+		  // API Key
+		  const API_KEY = “YOUR ACCESS TOKEN”
+		  ```
+	* Replace `”YOUR ACCESS TOKEN”` with the token you created after signing up for Mapbox.
+
+## Images of final product
+
+![light map](images/light.png)
+
+![dark map](images/dark.png)
+
+![outdoor map](images/outdoor.png)
+
+![satellite map](images/satellite.png)
 
