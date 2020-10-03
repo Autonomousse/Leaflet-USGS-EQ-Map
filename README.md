@@ -61,7 +61,7 @@ If you wish to use the code already in this repository, you will need to complet
 
 		* ```javascript
 		  // API Key
-		  const API_KEY = “YOUR ACCESS TOKEN”
+		  const API_KEY = “YOUR ACCESS TOKEN”;
 		  ```
 	* Replace `”YOUR ACCESS TOKEN”` with the token you created after signing up for Mapbox.
 
