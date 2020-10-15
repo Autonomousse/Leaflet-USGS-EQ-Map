@@ -61,9 +61,9 @@ If you wish to use the code already in this repository, you will need to complet
 
 		* ```javascript
 		  // API Key
-		  const API_KEY = ìYOUR ACCESS TOKENî;
+		  const API_KEY = ‚ÄúYOUR ACCESS TOKEN‚Äù;
 		  ```
-	* Replace `îYOUR ACCESS TOKENî` with the token you created after signing up for Mapbox.
+	* Replace `‚ÄùYOUR ACCESS TOKEN‚Äù` with the token you created after signing up for Mapbox.
 
 ## Images of Final Product
 
@@ -76,4 +76,3 @@ These images were created using the past 30 days of earthquake data for all eart
 ![outdoor map](images/outdoor.png)
 
 ![satellite map](images/satellite.png)
-
